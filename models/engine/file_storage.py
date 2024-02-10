@@ -25,17 +25,16 @@ class FileStorage:
         """serializes __objects to the JSON file"""
         with open(self.__file_path, 'w') as f:
             file_object = {k: v.to_dict()
-                           for k, v in self.__objects.items()}
+for k, v in self.__objects.items()}
             json.dump(file_object, f)
 
     def reload(self):
         """ Deserialises whats in filepath"""
-        if os.path.exists(self.__file_path):
-            try:
-                with open(self.__file_path, 'r') as f:
-                    new_object = json.load(f)
-                    for k, v in new_object.items():
-                        func = f"{v['__class__']}({**v})"
-                        self.__objects[k] = eval(func)
-            except Exception as e:
-                pass
+        try:
+            with open(self.__file_path, 'r') as f:
+                new_object = json.load(f)
+                for k, v in new_object.items():
+                    func = f"{v['__class__']}({**v})"
+                    self.__objects[k] = eval(func)
+        except Exception as e:
+            pass
