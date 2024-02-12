@@ -2,7 +2,8 @@
 """ BASEMODEL"""
 import uuid
 from datetime import datetime
-from .  import storage
+import models
+from models import storage
 
 
 class BaseModel:
