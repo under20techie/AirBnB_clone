@@ -29,7 +29,7 @@ class BaseModel:
     def __str__(self):
         """ Str """
 
-        return "[{}] ({}) <{}>".format(self.__class__.__name__, self.id, self.__dict__)
+        return "[{}] ({}) <{}>".format(self.__class__, self.id, self.__dict__)
 
     def save(self):
         """updates updated_at with current datetime"""
@@ -37,7 +37,8 @@ class BaseModel:
         self.updated_at = datetime.now()
         storage.save()
 
-    def to_dict(self):                                                                          """ returns the __dict__ of the instance """
+    def to_dict(self):
+        """ returns the __dict__ of the instance """
 
         new_dict = {}
 
