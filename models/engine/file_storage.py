@@ -2,7 +2,6 @@
 """FileStorage class"""
 import json
 import os
-import models
 from models.base_model import BaseModel
 
 
