@@ -17,8 +17,8 @@ class BaseModel:
                     if k == 'id':
                         v = str(v)
                     elif k in ['created_at', 'updated_at']:
-                        v = datetime.strptime(v, 
-'%Y-%m-%dT%H:%M:%S.%f')
+                        v = datetime.strptime(v,
+                                              '%Y-%m-%dT%H:%M:%S.%f')
 
                     setattr(self, k, v)
         else:
@@ -30,8 +30,8 @@ class BaseModel:
     def __str__(self):
         """ Str """
 
-        return "[{}] ({}) {}".format(self.__class__.__name__
-, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(self.__class__.__name__,
+                                     self.id, self.__dict__)
 
     def save(self):
         """updates updated_at with current datetime"""
