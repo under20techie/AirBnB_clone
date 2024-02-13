@@ -5,6 +5,8 @@ from models.base_model import BaseModel
 
 
 class TestBaseModel(unittest.TestCase):
+    """ TestBaseModel """
+
     @classmethod
     def setUpClass(cls):
         """SetupClassmethod"""
@@ -18,6 +20,7 @@ class TestBaseModel(unittest.TestCase):
 
         self.assertIsInstance(self.my_model, BaseModel)
 
+
     def test_attributes(self):
         """ Test Atributes """
 
@@ -28,6 +31,8 @@ class TestBaseModel(unittest.TestCase):
         """ Str repr """
 
         print(self.my_model)
+        print(self.my_model.id)
+        print(self.my_model.created_at)
 
     def test_save_method(self):
         """Save method"""
