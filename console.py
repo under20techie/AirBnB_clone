@@ -7,6 +7,8 @@ from models.base_model import BaseModel
 class HBNBCommand(cmd.Cmd):
     """ HBNB CONSOLE """
 
+    prompt = '(hbnb) '
+
     def do_quit(self):
         """ Quit """
         return True
