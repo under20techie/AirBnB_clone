@@ -38,6 +38,7 @@ class TestBaseModel(unittest.TestCase):
         """Save method"""
 
         self.my_model.save()
+        print(self.my_model)
 
     def test_to_dict_method(self):
         """ To dict merhod """
