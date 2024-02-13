@@ -24,7 +24,7 @@ class HBNBCommand(cmd.Cmd):
 def do_create(self, cls_name):
         """Creates a new instance of BaseModel, save it to json file """
         if cls_name:
-            if not isinstance(cls_name, 'BaseModel'):
+            if not isinstance(cls_name, BaseModel):
                 print("** class doesn't exist **")
                 return
 
@@ -43,7 +43,7 @@ def do_create(self, cls_name):
             return
         cls_name = args[0]
 
-        if not isinstance(cls_name, 'BaseModel'):
+        if not isinstance(cls_name, BaseModel):
             print("** class doesn't exist **")
             return
 
@@ -66,7 +66,7 @@ def do_create(self, cls_name):
             return
 
         cls_name = args[0]
-        if not isinstance(cls_name, 'BaseModel'):
+        if not isinstance(cls_name, BaseModel):
             print("** class doesn't exist **")
             return
 
@@ -86,7 +86,7 @@ def do_create(self, cls_name):
         """Prints all string representation of all instances """
     
         if arg:
-            if not isinstance(arg, 'BaseModel'):
+            if not isinstance(arg, BaseModel):
                 print("** class doesn't exist **")
                 return
             print([str(obj) for obj in md.storage.all().values()])
@@ -101,7 +101,7 @@ def do_create(self, cls_name):
 
         cls_name = args[0]
 
-        if not isinstance(cls_name, 'BaseModel'):
+        if not isinstance(cls_name, BaseModel):
             print("** class doesn't exist **")
             return
 
@@ -112,7 +112,7 @@ def do_create(self, cls_name):
         id_no = args[1]
 
         try:
-            obj = md.storage.all()[f"{cls_name}.{reg_no}"]
+            obj = md.storage.all()[f"{cls_name}.{id_no}"]
         except KeyError:
             print("** no instance found **")
             return
