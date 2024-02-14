@@ -162,10 +162,12 @@ class HBNBCommand(cmd.Cmd):
         par_1 = groups[2]
 
         if len(groups) == 3:
-            if cls_name == "all":
-               return  self.do_all(cls_name)
-            elif cls_name == "count":
-                return self.do_count(cls_name)
+            if func == "all":
+               self.do_all(cls_name)
+               return
+            elif func == "count":
+                self.do_count(cls_name)
+                return
 
         elif len(groups) == 4:
             par_2 = groups[3]
