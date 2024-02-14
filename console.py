@@ -157,6 +157,7 @@ class HBNBCommand(cmd.Cmd):
         return
 
     cls_name = groups[0]
+    print(cls_name)
     func = groups[1]
     par_1 = groups[2]
 
