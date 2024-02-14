@@ -145,6 +145,7 @@ class HBNBCommand(cmd.Cmd):
 
     def default(self, line):
         """Default"""
+
         pattern = re.compile(r'^(.*?)\.(.*?)\((.*?),?\)$')
         match = pattern.match(line)
 
@@ -164,23 +165,23 @@ class HBNBCommand(cmd.Cmd):
             elif cls_name == "count":
                 self.do_count(cls_name)
                 return
-            elif len(groups) == 4:
-                par_2 = groups[3]
+        elif len(groups) == 4:
+            par_2 = groups[3]
 
-                if func in ["show", "destroy"]:
-                    par = f"{cls_name} {par_1} {par_2}"
-                    getattr(self, f"do_{func}")(par)
-                    return
-                elif func == "update":
-                    par_2 = eval(par_2)
-                    par = f"{cls_name} {par_1} {par_2}"
-                    getattr(self, f"do_{func}")(par)
-                    return
-                elif len(groups) == 5 and func == "update":
-                    par_3 = groups[4]
-                    par = f"{cls_name} {par_1} {par_2} {par_3}"
-                    getattr(self, f"do_{func}")(par)
-                    return
+            if func in ["show", "destroy"]:
+                par = f"{cls_name} {par_1} {par_2}"
+                getattr(self, f"do_{func}")(par)
+                return
+            elif func == "update":
+                par_2 = eval(par_2)
+                par = f"{cls_name} {par_1} {par_2}"
+                getattr(self, f"do_{func}")(par)
+                return
+        elif len(groups) == 5 and func == "update":
+            par_3 = groups[4]
+            par = f"{cls_name} {par_1} {par_2} {par_3}"
+            getattr(self, f"do_{func}")(par)
+            return
 
 
 if __name__ == '__main__':
