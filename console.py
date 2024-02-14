@@ -93,6 +93,7 @@ class HBNBCommand(cmd.Cmd):
             md.storage.save()
         except KeyError:
             print("** no instance found **")
+            return
 
     def do_all(self, arg):
         """Prints all string representation of all instances """
@@ -101,7 +102,7 @@ class HBNBCommand(cmd.Cmd):
             if arg not in self.all_models:
                 print("** class doesn't exist **")
                 return
-            print([str(obj) for obj in md.storage.all().values()])
+            print([str(obj) for obj in md.storage.all().values( ) if type(obj) == eval(arg)])
 
     def do_update(self, arg):
         """Updates an instance"""
@@ -138,7 +139,11 @@ class HBNBCommand(cmd.Cmd):
             return
 
         setattr(obj, args[2], args[3])
-        md.storage.save()
+        obj.save()
+
+    def default(self, line):
+        """Default"""
+        pass
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
