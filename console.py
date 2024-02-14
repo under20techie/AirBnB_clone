@@ -27,7 +27,7 @@ class HBNBCommand(cmd.Cmd):
         """Creates a new instance of BaseModel and subclasses"""
 
         if cls_name:
-            if cls_name not in models:
+            if cls_name not in self.models:
                 print("** class doesn't exist **")
                 return
 
@@ -46,7 +46,7 @@ class HBNBCommand(cmd.Cmd):
             return
         cls_name = args[0]
 
-        if cls_name not in models:
+        if cls_name not in self.models:
             print("** class doesn't exist **")
             return
 
@@ -70,7 +70,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         cls_name = args[0]
-        if not cls_name not in models:
+        if not cls_name not in self.models:
             print("** class doesn't exist **")
             return
 
@@ -90,7 +90,7 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all instances """
 
         if arg:
-            if cls_name not in models:
+            if cls_name not in self.models:
                 print("** class doesn't exist **")
                 return
             print([str(obj) for obj in md.storage.all().values()])
@@ -105,7 +105,7 @@ class HBNBCommand(cmd.Cmd):
 
         cls_name = args[0]
 
-        if cls_name not in models:
+        if cls_name not in self.models:
             print("** class doesn't exist **")
             return
 
