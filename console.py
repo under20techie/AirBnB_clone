@@ -166,7 +166,7 @@ class HBNBCommand(cmd.Cmd):
                 self.do_count(cls_name)
                 return
 
-        elif len(groups)} == 4:
+        elif len(groups) == 4:
             par_2 = groups[3]
             if func in ["show", "destroy"]:
                 par = f"{cls_name} {par_1} {par_2}"
