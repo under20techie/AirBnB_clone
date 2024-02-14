@@ -146,7 +146,7 @@ class HBNBCommand(cmd.Cmd):
     def default(self, line):
         """Default"""
 
-        pattern = re.compile(r'^(.*?)\.(.*?)\(((.*?),?)+\)$')
+        pattern = re.compile(r'^(.*?)\.(.*?)\((.*?)+,?\)$')
         match = pattern.match(line)
 
         if match:
