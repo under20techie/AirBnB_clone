@@ -151,6 +151,8 @@ class HBNBCommand(cmd.Cmd):
 
         if match:
             groups = match.groups()
+             print(f'Matched: {s}')
+             print(f'Groups: {groups}')
         else:
             return
 
@@ -171,7 +173,7 @@ class HBNBCommand(cmd.Cmd):
                 eval(f"self.do_{func}")(par)
                 return
 
-        par_2 = groups[3]
+        par_2 = groups[2]
 
         if len(groups) == 4:
             if func == "update":
