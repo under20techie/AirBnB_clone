@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Console """
 import cmd
+from inspect import isclass
 import models as md
 from models.base_model import BaseModel
 
@@ -9,7 +10,7 @@ class HBNBCommand(cmd.Cmd):
     """ HBNB CONSOLE """
 
     prompt = '(hbnb) '
-    models = [cls for cls in md.__dict__.values()]
+    models = [cls for cls in md.__dict__.values() if isclass(eval(cls))]
 
     def do_quit(self, line):
         """ Quit """
