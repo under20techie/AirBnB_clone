@@ -9,6 +9,7 @@ class HBNBCommand(cmd.Cmd):
     """ HBNB CONSOLE """
 
     prompt = '(hbnb) '
+    models = [cls.__name__ for cls in md.__dict__.values()]
 
     def do_quit(self, line):
         """ Quit """
@@ -24,8 +25,9 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, cls_name):
         """Creates a new instance of BaseModel and subclasses"""
+
         if cls_name:
-            if not isinstance(cls_name, BaseModel):
+            if cls_name not in models:
                 print("** class doesn't exist **")
                 return
 
@@ -37,14 +39,14 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """Prints the string representation of an instance"""
-    
+
         args = arg.split()
         if not args:
             print("** class name missing **")
             return
         cls_name = args[0]
 
-        if not isinstance(cls_name, BaseModel):
+        if cls_name not in models:
             print("** class doesn't exist **")
             return
 
@@ -60,14 +62,15 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
     def do_destroy(self, arg):
-        """Deletes an instance based on the class name and id """
+        """Deletes an instance"""
+
         args = arg.split()
         if not args:
             print("** class name missing **")
             return
 
         cls_name = args[0]
-        if not isinstance(cls_name, BaseModel):
+        if not cls_name not in models:
             print("** class doesn't exist **")
             return
 
@@ -85,9 +88,9 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """Prints all string representation of all instances """
-    
+
         if arg:
-            if not isinstance(arg, BaseModel):
+            if cls_name not in models:
                 print("** class doesn't exist **")
                 return
             print([str(obj) for obj in md.storage.all().values()])
@@ -102,7 +105,7 @@ class HBNBCommand(cmd.Cmd):
 
         cls_name = args[0]
 
-        if not isinstance(cls_name, BaseModel):
+        if cls_name not in models:
             print("** class doesn't exist **")
             return
 
