@@ -151,8 +151,8 @@ class HBNBCommand(cmd.Cmd):
 
         if match:
             groups = match.groups()
-             print(f'Matched: {s}')
-             print(f'Groups: {groups}')
+            print(f'Matched: {s}')
+            print(f'Groups: {groups}')
         else:
             return
 
