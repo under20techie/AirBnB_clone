@@ -9,7 +9,7 @@ class HBNBCommand(cmd.Cmd):
     """ HBNB CONSOLE """
 
     prompt = '(hbnb) '
-    models = [cls.__name__ for cls in md.__dict__.values()]
+    models = [cls for cls in md.__dict__.values()]
 
     def do_quit(self, line):
         """ Quit """
