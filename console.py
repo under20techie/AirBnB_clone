@@ -175,15 +175,15 @@ class HBNBCommand(cmd.Cmd):
 
         if len(groups) == 4:
             if func == "update":
-                par_2 = eval(par_2)
-                par = "{} {} {}".format(cls_name, par_1, par_2)
+                par_2, par_3 = **(eval(par_2))
+                par = "{} {} {}".format(cls_name, par_1, par_2, par_3)
                 eval(f"self.do_{func}")(par)
                 return
 
         par_3 = groups[4]
 
         if len(groups) == 5 and func == "update":
-            par = "{} {} {}".format(cls_name, par_1, par_2, par_3)
+            par = "{} {} {} {}".format(cls_name, par_1, par_2, par_3)
             eval(f"self.do_{func}")(par)
             return
 
