@@ -167,7 +167,7 @@ class HBNBCommand(cmd.Cmd):
                 return
             elif func in ["show", "destroy"]:
                 par = f"{cls_name} {par_1}"
-                eval(f"self.do_{func}({str(par)})")
+                par = "{} {}".format(cls_name, par_1)
                 return
 
         par_2 = groups[3]
@@ -175,14 +175,14 @@ class HBNBCommand(cmd.Cmd):
         if len(groups) == 4:
             if func == "update":
                 par_2 = eval(par_2)
-                par = f"{cls_name} {par_1} {par_2}"
+                par = "{} {} {}".format(cls_name, par_1, par_2)
                 eval(f"self.do_{func}({str(par)})")
                 return
 
         par_3 = groups[4]
 
         if len(groups) == 5 and func == "update":
-            par = f"{cls_name} {par_1} {par_2} {par_3}"
+            par = "{} {} {}".format(cls_name, par_1, par_2, par_3)
             eval(f"self.do_{func}({str(par)})")
             return
 
