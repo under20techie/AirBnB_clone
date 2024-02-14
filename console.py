@@ -10,7 +10,8 @@ class HBNBCommand(cmd.Cmd):
     """ HBNB CONSOLE """
 
     prompt = '(hbnb) '
-    models = [cls for cls in md.__dict__.values() if isclass(eval(cls))]
+    all_models = ["BaseModel", "User", "City", "Place",
+"State", "Amenity", "Review"]
 
     def do_quit(self, line):
         """ Quit """
@@ -28,7 +29,7 @@ class HBNBCommand(cmd.Cmd):
         """Creates a new instance of BaseModel and subclasses"""
 
         if cls_name:
-            if cls_name not in self.models:
+            if cls_name not in self.all_models:
                 print("** class doesn't exist **")
                 return
 
@@ -47,7 +48,7 @@ class HBNBCommand(cmd.Cmd):
             return
         cls_name = args[0]
 
-        if cls_name not in self.models:
+        if cls_name not in self.all_models:
             print("** class doesn't exist **")
             return
 
@@ -71,7 +72,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         cls_name = args[0]
-        if not cls_name not in self.models:
+        if not cls_name not in self.all_models:
             print("** class doesn't exist **")
             return
 
@@ -91,7 +92,7 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all instances """
 
         if arg:
-            if arg not in self.models:
+            if arg not in self.all_models:
                 print("** class doesn't exist **")
                 return
             print([str(obj) for obj in md.storage.all().values()])
@@ -106,7 +107,7 @@ class HBNBCommand(cmd.Cmd):
 
         cls_name = args[0]
 
-        if cls_name not in self.models:
+        if cls_name not in self.all_models:
             print("** class doesn't exist **")
             return
 
