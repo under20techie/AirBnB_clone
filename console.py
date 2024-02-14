@@ -4,6 +4,12 @@ import cmd
 from inspect import isclass
 import models as md
 from models.base_model import BaseModel
+from models.user import User
+from models.place import Place
+from models.amenity import Amenity
+from models.city import City
+from models.state import State
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
