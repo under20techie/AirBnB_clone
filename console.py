@@ -21,8 +21,9 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """Empty"""
         return
-def do_create(self, cls_name):
-        """Creates a new instance of BaseModel, save it to json file """
+
+    def do_create(self, cls_name):
+        """Creates a new instance of BaseModel and subclasses"""
         if cls_name:
             if not isinstance(cls_name, BaseModel):
                 print("** class doesn't exist **")
