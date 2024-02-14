@@ -90,7 +90,7 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all instances """
 
         if arg:
-            if cls_name not in self.models:
+            if arg not in self.models:
                 print("** class doesn't exist **")
                 return
             print([str(obj) for obj in md.storage.all().values()])
