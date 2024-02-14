@@ -168,6 +168,7 @@ class HBNBCommand(cmd.Cmd):
             elif func in ["show", "destroy"]:
                 par = f"{cls_name} {par_1}"
                 par = "{} {}".format(cls_name, par_1)
+                eval(f"self.do_{func}({str(par)})")
                 return
 
         par_2 = groups[3]
