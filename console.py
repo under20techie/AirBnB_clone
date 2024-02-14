@@ -144,44 +144,48 @@ class HBNBCommand(cmd.Cmd):
         obj.save()
 
     def default(self, line):
-        """Default"""
+    """Default"""
 
-        pattern = re.compile(r'^(.*?)\.(.*?)\((.*?),?\)$')
-        match = pattern.match(line)
+    pattern = re.compile(r'^(.*?)\.(.*?)\((.*?),?\)$')
+    match = pattern.match(line)
 
-        if match:
-            groups = match.groups()
-        else:
+    if match:
+        groups = match.groups()
+        print(f'Matched: {line}')
+        print(f'Groups: {groups}')
+    else:
+        return
+
+    cls_name = groups[0]
+    func = groups[1]
+    par_1 = groups[2]
+
+    if len(groups) == 3:
+        if cls_name == "all":
+            self.do_all(cls_name)
+            return
+        elif cls_name == "count":
+            self.do_count(cls_name)
             return
 
-        cls_name = groups[0]
-        func = groups[1]
-        par_1 = groups[2]
+    elif len(groups) == 4:
+        par_2 = groups[3]
 
-        if len(groups) == 3:
-            if cls_name == "all":
-                self.do_all(cls_name)
-                return
-            elif cls_name == "count":
-                self.do_count(cls_name)
-                return
-        elif len(groups) == 4:
-            par_2 = groups[3]
-
-            if func in ["show", "destroy"]:
-                par = f"{cls_name} {par_1} {par_2}"
-                getattr(self, f"do_{func}")(par)
-                return
-            elif func == "update":
-                par_2 = eval(par_2)
-                par = f"{cls_name} {par_1} {par_2}"
-                getattr(self, f"do_{func}")(par)
-                return
-        elif len(groups) == 5 and func == "update":
-            par_3 = groups[4]
-            par = f"{cls_name} {par_1} {par_2} {par_3}"
+        if func in ["show", "destroy"]:
+            par = f"{cls_name} {par_1} {par_2}"
             getattr(self, f"do_{func}")(par)
             return
+        elif func == "update":
+            par_2 = eval(par_2)
+            par = f"{cls_name} {par_1} {par_2}"
+            getattr(self, f"do_{func}")(par)
+            return
+
+    elif len(groups) == 5 and func == "update":
+        par_3 = groups[4]
+        par = f"{cls_name} {par_1} {par_2} {par_3}"
+        getattr(self, f"do_{func}")(par)
+        return
 
 
 if __name__ == '__main__':
