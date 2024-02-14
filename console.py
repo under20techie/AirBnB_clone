@@ -165,15 +165,15 @@ class HBNBCommand(cmd.Cmd):
             elif func == "count":
                 self.do_count(cls_name)
                 return
+            elif func in ["show", "destroy"]:
+                par = f"{cls_name} {par_1}"
+                eval(f"self.do_{func}({par})")
+                return
 
         par_2 = groups[3]
 
         if len(groups) == 4:
-            if func in ["show", "destroy"]:
-                par = f"{cls_name} {par_1} {par_2}"
-                eval(f"self.do_{func}({par})")
-                return
-            elif func == "update":
+            if func == "update":
                 par_2 = eval(par_2)
                 par = f"{cls_name} {par_1} {par_2}"
                 eval(f"self.do_{func}({par})")
