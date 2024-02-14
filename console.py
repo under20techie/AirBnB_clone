@@ -78,7 +78,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         cls_name = args[0]
-        if not cls_name not in self.all_models:
+        if cls_name not in self.all_models:
             print("** class doesn't exist **")
             return
 
@@ -103,7 +103,8 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
                 return
             print([str(obj) for obj in md.storage.all().values( ) if type(obj) == eval(arg)])
-
+        else:
+            print([str(obj) for obj in md.storage.all().values( )])
     def do_update(self, arg):
         """Updates an instance"""
 
