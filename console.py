@@ -151,13 +151,10 @@ class HBNBCommand(cmd.Cmd):
 
         if match:
             groups = match.groups()
-            print(f'Matched: {line}')
-            print(f'Groups: {groups}')
         else:
             return
 
         cls_name = groups[0]
-        print(type(cls_name))
         func = groups[1]
         par_1 = groups[2]
 
