@@ -146,7 +146,7 @@ class HBNBCommand(cmd.Cmd):
     def default(self, line):
         """Default"""
 
-        pattern = re.compile(r'^(.*?)\.(.*?)\((.*?),?+\)$')
+        pattern = re.compile(r'^(.*?)\.(.*?)\((.*?),?\)$')
         match = pattern.match(line)
 
         if match:
@@ -156,7 +156,7 @@ class HBNBCommand(cmd.Cmd):
 
         cls_name = groups[0]
         func = groups[1]
-        par_1 = groups[2].split(',')
+        par_1 = groups[2].split(', ')
 
         if func == "all":
             self.do_all(cls_name)
@@ -165,7 +165,6 @@ class HBNBCommand(cmd.Cmd):
             self.do_count(cls_name)
             return
         if func in ["show", "destroy"]:
-            par = f"{cls_name} {par_1}"
             par = "{} {}".format(cls_name, par_1[0])
             eval(f"self.do_{func}")(par)
             return
