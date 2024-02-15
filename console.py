@@ -146,45 +146,41 @@ class HBNBCommand(cmd.Cmd):
     def default(self, line):
         """Default"""
 
-        pattern = re.compile(r'^(.*?)\.(.*?)\((.*?)+,?\)$')
+        pattern = re.compile(r'^(.*?)\.(.*?)\((.*?),?+\)$')
         match = pattern.match(line)
 
         if match:
             groups = match.groups()
-            print(f'Matched: {line}')
-            print(f'Groups: {groups}')
         else:
             return
 
         cls_name = groups[0]
         func = groups[1]
-        par_1 = groups[2]
+        par_1 = groups[2].split(',')
 
-        if len(groups) == 3:
-            if func == "all":
-               self.do_all(cls_name)
-               return
-            elif func == "count":
-                self.do_count(cls_name)
-                return
-            elif func in ["show", "destroy"]:
-                par = f"{cls_name} {par_1}"
-                par = "{} {}".format(cls_name, par_1)
-                eval(f"self.do_{func}")(par)
-                return
+        if func == "all":
+            self.do_all(cls_name)
+            return
+        if func == "count":
+            self.do_count(cls_name)
+            return
+        if func in ["show", "destroy"]:
+            par = f"{cls_name} {par_1}"
+            par = "{} {}".format(cls_name, par_1[0])
+            eval(f"self.do_{func}")(par)
+            return
 
-        par_2 = groups[2]
+        par_2 = par_1[1]
 
-        if len(groups) == 4:
-            if func == "update":
-                par_2, par_3 = eval(par_2).values()
-                par = "{} {} {} {}".format(cls_name, par_1, par_2, par_3)
-                eval(f"self.do_{func}")(par)
-                return
+        if func == "update" and len(par_1) == 2:
+            par_2, par_3 = eval(par_2).values()
+            par = "{} {} {} {}".format(cls_name, par_1, par_2, par_3)
+            eval(f"self.do_{func}")(par)
+            return
 
-        par_3 = groups[2]
+        par_3 = par_1[2]
 
-        if len(groups) == 5 and func == "update":
+        if func == "update" and len(par_1) == 3:
             par = "{} {} {} {}".format(cls_name, par_1, par_2, par_3)
             eval(f"self.do_{func}")(par)
             return
