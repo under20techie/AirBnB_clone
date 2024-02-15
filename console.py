@@ -173,14 +173,14 @@ class HBNBCommand(cmd.Cmd):
 
         if func == "update" and len(par_1) == 2:
             par_2, par_3 = eval(par_2).values()
-            par = "{} {} {} {}".format(cls_name, par_1, par_2, par_3)
+            par = "{} {} {} {}".format(cls_name, par_1[0], par_2, par_3)
             eval(f"self.do_{func}")(par)
             return
 
         par_3 = str(par_1[2])
 
         if func == "update" and len(par_1) == 3:
-            par = "{} {} {} {}".format(cls_name, par_1, par_2, par_3)
+            par = "{} {} {} {}".format(cls_name, par_1[0], par_2, par_3)
             eval(f"self.do_{func}")(par)
             return
 
