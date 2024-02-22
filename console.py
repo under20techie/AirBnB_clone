@@ -18,7 +18,7 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = '(hbnb) '
     all_models = ["BaseModel", "User", "City", "Place",
-"State", "Amenity", "Review"]
+                  "State", "Amenity", "Review"]
 
     def do_quit(self, line):
         """ Quit """
@@ -103,9 +103,12 @@ class HBNBCommand(cmd.Cmd):
             if arg not in self.all_models:
                 print("** class doesn't exist **")
                 return
-            print([str(obj) for obj in md.storage.all().values( ) if type(obj) == eval(arg)])
+            print([str(obj) for obj in md.storage.all().values()
+if type(obj) is eval(arg)])
         else:
-            print([str(obj) for obj in md.storage.all().values( )])
+            print([str(obj) for obj in
+md.storage.all().values()])
+
     def do_update(self, arg):
         """Updates an instance"""
 
