@@ -104,7 +104,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
                 return
             print([str(obj) for obj in md.storage.all().
-                   values() if type(obj) is eval(arg)]))
+                   values() if type(obj) is eval(arg)])
         else:
             print([str(obj) for obj in
                    md.storage.all().values()])
