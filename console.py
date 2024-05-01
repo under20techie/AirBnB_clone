@@ -172,8 +172,6 @@ class HBNBCommand(cmd.Cmd):
             eval(f"self.do_{func}")(par)
             return
 
-        par_2 = str(par_1[1])
-
         if func == "update" and len(par_1) == 2:
             par_2 = eval('{' + par_1[1])
             for k, v in par_2.items():
@@ -181,6 +179,8 @@ class HBNBCommand(cmd.Cmd):
                 eval(f"self.do_{func}")(par)
             return
 
+        par_1 = groups[2].split(', ')
+        par_2 = str(par_1[1])
         par_3 = str(par_1[2])
 
         if func == "update" and len(par_1) == 3:
